@@ -1,5 +1,10 @@
 # btoandav20
 
+
+# change from the original
+
+* accept decimal unit ( 0.x )
+
 Support for Oanda-V20 API in backtrader
 
 **This  integration is still under development and may have some issues, use it for live trading at your own risk!**
