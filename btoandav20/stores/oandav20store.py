@@ -490,8 +490,8 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
         okwargs = dict()
         okwargs['instrument'] = order.data._dataname
         okwargs['units'] = (
-            abs(int(order.created.size)) if order.isbuy()
-            else -abs(int(order.created.size)))  # negative for selling
+            abs(float(order.created.size)) if order.isbuy()
+            else -abs(float(order.created.size)))  # negative for selling
         okwargs['type'] = self._ORDEREXECS[order.exectype]
         okwargs['replace'] = order.info.get('replace', None)
         okwargs['replace_type'] = order.info.get('replace_type', None)
