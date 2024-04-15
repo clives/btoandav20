@@ -3,7 +3,7 @@
 
 # change from the original
 
-* accept decimal unit ( 0.x )
+* accept decimal unit/size ( 0.x )
 
 Support for Oanda-V20 API in backtrader
 
