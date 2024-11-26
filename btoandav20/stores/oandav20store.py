@@ -929,10 +929,11 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
                     response = self.oapi.order.create(
                         self.p.account,
                         order=okwargs)
-                # get the transaction which created the order
-                o = response.get('orderCreateTransaction', 201)
+                # get the transaction which created the order    
+                o = response.get('orderCreateTransaction', 201)            
 
                 try:
+                    print(f" response oanda: {o}")
                     from trading_library.realtime.boto3_helper import Boto3Helper
                     Boto3Helper().save_order_failure( o, oid)
                 except Exception as e:
