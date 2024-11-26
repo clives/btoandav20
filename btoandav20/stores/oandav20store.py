@@ -931,6 +931,14 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
                         order=okwargs)
                 # get the transaction which created the order
                 o = response.get('orderCreateTransaction', 201)
+
+                try:
+                    from trading_library.realtime.boto3_helper import Boto3Helper
+                    Boto3Helper().save_order_failure( o, oid)
+                except Exception as e:
+                    print(e)
+                            
+
             except (v20.V20ConnectionError, v20.V20Timeout) as e:
                 self.put_notification(str(e))
                 self.broker._reject(oref)
