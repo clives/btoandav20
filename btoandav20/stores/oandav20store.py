@@ -934,9 +934,12 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
 
                 try:
                     print(f" response oanda: {o}")
+                    print(f" response oanda oref: {oref}")
                     from trading_library.realtime.boto3_helper import Boto3Helper
                     Boto3Helper().save_order_failure( o, oref)
+                    print(f" done oanda oref: {o}")
                 except Exception as e:
+                    print("Crash oanda")
                     print(e)
                             
 
