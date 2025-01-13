@@ -936,7 +936,7 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
                     print(f" response oanda: {o}")
                     print(f" response oanda oref: {oref}")
                     from trading_library.realtime.boto3_helper import Boto3Helper
-                    Boto3Helper().save_order_failure( o, oref)
+                    Boto3Helper().save_order_failure(o, oref)
                     print(f" done oanda oref: {o}")
                 except Exception as e:
                     print("Crash oanda")
@@ -944,10 +944,12 @@ class OandaV20Store(with_metaclass(MetaSingleton, object)):
                             
 
             except (v20.V20ConnectionError, v20.V20Timeout) as e:
+                print(f"ERROR OANDA V20ConnectionError {e}")
                 self.put_notification(str(e))
                 self.broker._reject(oref)
                 continue
             except Exception as e:
+                print(f"ERROR OANDA Exception {e}")
                 self.put_notification(
                     self._create_error_notif(
                         e, response))
